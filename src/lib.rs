@@ -1,6 +1,6 @@
 pub mod matrix;
 pub mod modint;
-pub mod units;
+pub mod identities;
 pub mod integer;
 pub mod quadratic_integer;
 
@@ -12,7 +12,7 @@ use crate::units::{Zero,Identity}; */
 mod tests {
     use crate::modint::ModInt;
     use crate::integer::Integer;
-    use crate::units::{Zero,Identity};
+    use crate::identities::{Zero,Identity};
     use crate::quadratic_integer::QuadInt;
     
     const MOD1: u64 = 1_000_000_007;

@@ -1,5 +1,5 @@
 use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign};
-use crate::units::{Zero,Identity};
+use crate::identities::{Zero,Identity};
 use std::fmt;
 
 /// 加減乗除など以外にもトレイトを実装するため、i64型と実質的には同等なInteger構造体を新たに定義。

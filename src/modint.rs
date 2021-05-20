@@ -1,5 +1,5 @@
 use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign};
-use crate::units::{Zero,Identity};
+use crate::identities::{Zero,Identity};
 use std::fmt;
 
 /// MODで割った余り。\mathbb{Z} / MOD \mathbb{Z}の元。
