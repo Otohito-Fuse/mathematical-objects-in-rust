@@ -11,6 +11,7 @@ pub struct QuadInt<const B: i64, const C: i64> {
 }
 
 impl<const B: i64, const C: i64> QuadInt<B, C> {
+    /// コンストラクタ。1つめの引数が定数項。2つめが1次の項。
     pub fn new(constant: i64, first: i64) -> Self {
         Self {
             constant: constant,
@@ -19,6 +20,7 @@ impl<const B: i64, const C: i64> QuadInt<B, C> {
     }
 }
 
+/// println!などで見やすく表示させるため、Displayトレイトを実装。
 impl<const B: i64, const C: i64> fmt::Display for QuadInt<B, C> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "[{} + {}x]", self.constant, self.first)

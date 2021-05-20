@@ -18,12 +18,14 @@ mod tests {
     const MOD1: u64 = 1_000_000_007;
     const MOD2: u64 = 998_244_353;
 
+    /// Integer型がZero, Identityの2つのトレイトを想定通りに実装できているかどうか
     #[test]
     fn integer_treatment1() {
         assert_eq!(Integer::new(0), Integer::zero());
         assert_eq!(Integer::new(1), Integer::identity());
     }
 
+    /// ModInt型がZero, Identityの2つのトレイトを想定通りに実装できているかどうか
     #[test]
     fn modint_treatment1() {
         assert_eq!(ModInt::<MOD1>::new(0), ModInt::<MOD1>::zero());
@@ -32,11 +34,13 @@ mod tests {
         assert_eq!(ModInt::<MOD2>::new(1), ModInt::<MOD2>::identity());
     }
 
+    /// ModInt型がDisplayトレイトを想定通りに実装できているかどうか
     #[test]
     fn modint_print1() {
         assert_eq!("3 mod 1000000007", format!("{}",ModInt::<MOD1>::new(3)))
     }
 
+    /// QuadInt型の足し算と掛け算の確認
     #[test]
     fn quadratic_integer_treatment1() {
         // 1 + i in Z[i]
@@ -51,6 +55,7 @@ mod tests {
         assert_eq!(x * y, w);
     }
 
+    /// QuadInt型がDisplayトレイトを想定通りに実装できているかどうか
     #[test]
     fn quadratic_integer_print1() {
         assert_eq!("[1 + 1x]", format!("{}",QuadInt::<0, -1>::new(1, 1)))

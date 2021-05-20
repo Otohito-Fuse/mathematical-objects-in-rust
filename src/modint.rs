@@ -9,16 +9,19 @@ pub struct ModInt<const MOD: u64> {
 }
 
 impl<const MOD: u64> ModInt<MOD> {
+    /// コンストラクタ。代表元が一意になるよう0以上MOD未満の整数として格納。
     pub fn new(n: u64) -> Self {
         ModInt {
             representative: n % MOD,
         }
     }
 
+    /// u64型にする
     pub fn to_int(&self) -> u64 {
         self.representative
     }
 
+    /// 繰り返し二乗法によるべき乗の計算
     pub fn modpow(&self, n: u64) -> Self {
         let mut res = 1;
         let mut a = self.representative;
@@ -39,6 +42,7 @@ impl<const MOD: u64> ModInt<MOD> {
     }
 }
 
+/// println!などで見やすく表示させるため、Displayトレイトを実装。
 impl<const MOD: u64> fmt::Display for ModInt<MOD> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{} mod {}", self.representative, MOD)
