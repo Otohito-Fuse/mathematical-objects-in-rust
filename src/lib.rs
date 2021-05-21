@@ -5,6 +5,7 @@ pub mod inverse;
 pub mod matrix;
 pub mod modint;
 pub mod quadratic_extension;
+pub mod quadratic_field;
 pub mod quadratic_integer;
 pub mod rational_number;
 pub mod real_number;
@@ -17,6 +18,7 @@ mod tests {
     use crate::inverse::Inverse;
     use crate::modint::ModInt;
     use crate::quadratic_extension::QuadExt;
+    use crate::quadratic_field::QuadField;
     use crate::quadratic_integer::QuadInt;
     use crate::rational_number::RationalNumber;
 
@@ -126,9 +128,9 @@ mod tests {
     /// RationalNumberについて、異なる見た目の有理数どうしが同一視されているかの確認。
     #[test]
     fn equivalent_rational_numbers1() {
-        let a = RationalNumber::new(-10,30);
-        let b = RationalNumber::new(-7,21);
-        assert_eq!(a,b);
+        let a = RationalNumber::new(-10, 30);
+        let b = RationalNumber::new(-7, 21);
+        assert_eq!(a, b);
     }
 
     /// RationalNumberの加算の確認。
@@ -155,6 +157,15 @@ mod tests {
         let a = RationalNumber::new(-3, 5);
         let b = RationalNumber::new(2, 33);
         let c = RationalNumber::new(-2, 55);
+        assert_eq!(a * b, c);
+    }
+
+    /// Q\[√2\]での乗算の確認。
+    #[test]
+    fn q_sqrt_2_multiply_test1() {
+        let a = QuadField::<0, 2>::new(RationalNumber::new(5, 8), RationalNumber::new(3, 7));
+        let b = QuadField::<0, 2>::new(RationalNumber::new(7, 10), RationalNumber::new(-17, 35));
+        let c = QuadField::<0, 2>::new(RationalNumber::new(83, 3920), RationalNumber::new(-1, 280));
         assert_eq!(a * b, c);
     }
 }
