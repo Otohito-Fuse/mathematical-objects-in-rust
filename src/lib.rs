@@ -6,6 +6,7 @@ pub mod matrix;
 pub mod modint;
 pub mod quadratic_extension;
 pub mod quadratic_integer;
+pub mod rational_number;
 pub mod real_number;
 
 #[cfg(test)]
@@ -17,6 +18,7 @@ mod tests {
     use crate::modint::ModInt;
     use crate::quadratic_extension::QuadExt;
     use crate::quadratic_integer::QuadInt;
+    use crate::rational_number::RationalNumber;
 
     const MOD1: u64 = 1_000_000_007;
     const MOD2: u64 = 998_244_353;
@@ -119,5 +121,40 @@ mod tests {
         assert!(is_prime(2_147_483_647));
         // トーマスクラウセンが1855年に発見した素数
         assert!(is_prime(67_280_421_310_721));
+    }
+
+    /// RationalNumberについて、異なる見た目の有理数どうしが同一視されているかの確認。
+    #[test]
+    fn equivalent_rational_numbers1() {
+        let a = RationalNumber::new(-10,30);
+        let b = RationalNumber::new(-7,21);
+        assert_eq!(a,b);
+    }
+
+    /// RationalNumberの加算の確認。
+    #[test]
+    fn add_rational_numbers1() {
+        let a = RationalNumber::new(3, 5);
+        let b = RationalNumber::new(1, 15);
+        let c = RationalNumber::new(2, 3);
+        assert_eq!(a + b, c);
+    }
+
+    /// RationalNumberの減算の確認。
+    #[test]
+    fn subtract_rational_numbers1() {
+        let a = RationalNumber::new(3, 5);
+        let b = RationalNumber::new(1, 10);
+        let c = RationalNumber::new(1, 2);
+        assert_eq!(a - b, c);
+    }
+
+    /// RationalNumberの乗算の確認。
+    #[test]
+    fn multiply_rational_numbers1() {
+        let a = RationalNumber::new(-3, 5);
+        let b = RationalNumber::new(2, 33);
+        let c = RationalNumber::new(-2, 55);
+        assert_eq!(a * b, c);
     }
 }
