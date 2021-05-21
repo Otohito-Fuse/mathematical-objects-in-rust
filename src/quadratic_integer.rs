@@ -2,9 +2,9 @@ use crate::identities::{Identity, Zero};
 use std::fmt;
 use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 
-/// Z[x]/(x^2 - Bx - C) の元
+/// Z\[x\]/(x^2 - Bx - C) の元
 ///
-/// B = 0, C = -1 のときは Z[i] など
+/// B = 0, C = -1 のときは Z\[i\] など
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
 pub struct QuadInt<const B: i64, const C: i64> {
     constant: i64,
@@ -21,7 +21,7 @@ impl<const B: i64, const C: i64> QuadInt<B, C> {
     }
 }
 
-/// println!などで見やすく表示させるため、Displayトレイトを実装。
+/// ```println!```などで見やすく表示させるため、```Display```トレイトを実装。
 impl<const B: i64, const C: i64> fmt::Display for QuadInt<B, C> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "[{} + {}x]", self.constant, self.first)

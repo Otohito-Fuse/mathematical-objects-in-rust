@@ -2,12 +2,12 @@ use crate::identities::Zero;
 use std::fmt;
 use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 
-/// R[x]/(x^2 - bx - c) の元。
-/// ここでRは型Tの対象のなす環。
+/// R\[x\]/(x^2 - bx - c) の元。
+/// ここでRは型```T```の対象のなす環。
 /// 有限体の2次拡大などを意識している。
 ///
-/// 本当は定数B,CをT型として取りたかったが、
-/// <const B: T>のような指定は許されていないようなので断念。
+/// 本当は定数B,Cを```T```型として取りたかったが、
+/// ```<const B: T>```のような指定は許されていないようなので断念。
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
 pub struct QuadExt<T> {
     constant: T,
@@ -28,8 +28,8 @@ impl<T> QuadExt<T> {
     }
 }
 
-/// println!などで見やすく表示させるため、Displayトレイトを実装。
-/// 型TがそもそもDisplayトレイトを実装していることを要求。
+/// ```println!```などで見やすく表示させるため、```Display```トレイトを実装。
+/// 型```T```がそもそも```Display```トレイトを実装していることを要求。
 impl<T: fmt::Display> fmt::Display for QuadExt<T> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "[({}) + ({})x]", self.constant, self.first)
@@ -38,7 +38,7 @@ impl<T: fmt::Display> fmt::Display for QuadExt<T> {
 
 /// 足し算の実装。
 /// これら演算は、bやcが異なっている場合（すなわち異なる環の元どうしでの演算を試みた場合）、
-/// R[x] / (x^2) の元 0 を返すことにする。
+/// R\[x\] / (x^2) の元 0 を返すことにする。
 impl<T: Copy + Add<Output = T> + Zero + Eq> Add for QuadExt<T> {
     type Output = Self;
     fn add(self, rhs: Self) -> Self {

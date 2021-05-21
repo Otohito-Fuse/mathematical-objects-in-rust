@@ -2,7 +2,7 @@ use crate::identities::{Identity, Zero};
 use std::fmt;
 use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 
-/// 加減乗除など以外にもトレイトを実装するため、f64型と実質的には同等なRealNumber構造体を新たに定義。
+/// 加減乗除など以外にもトレイトを実装するため、```f64```型と実質的には同等な```RealNumber```構造体を新たに定義。
 #[derive(Debug, Clone, Copy)]
 pub struct RealNumber {
     value: f64,

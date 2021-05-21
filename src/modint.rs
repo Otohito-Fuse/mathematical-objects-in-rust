@@ -3,21 +3,21 @@ use crate::inverse::Inverse;
 use std::fmt;
 use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 
-/// MODで割った余り。\mathbb{Z} / MOD \mathbb{Z}の元。
+/// ```MOD```で割った余り。Z / MOD Z の元。
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
 pub struct ModInt<const MOD: u64> {
     representative: u64,
 }
 
 impl<const MOD: u64> ModInt<MOD> {
-    /// コンストラクタ。代表元が一意になるよう0以上MOD未満の整数として格納。
+    /// コンストラクタ。代表元が一意になるよう```0```以上```MOD```未満の整数として格納。
     pub fn new(n: u64) -> Self {
         ModInt {
             representative: n % MOD,
         }
     }
 
-    /// u64型にする
+    /// ```u64```型にする
     pub fn to_int(&self) -> u64 {
         self.representative
     }
@@ -43,7 +43,7 @@ impl<const MOD: u64> ModInt<MOD> {
     }
 }
 
-/// println!などで見やすく表示させるため、Displayトレイトを実装。
+/// ```println!```などで見やすく表示させるため、```Display```トレイトを実装。
 impl<const MOD: u64> fmt::Display for ModInt<MOD> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{} mod {}", self.representative, MOD)
