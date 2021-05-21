@@ -1,5 +1,6 @@
 use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign};
 use crate::identities::{Zero,Identity};
+use crate::inverse::Inverse;
 use std::fmt;
 
 /// 加減乗除など以外にもトレイトを実装するため、i64型と実質的には同等なInteger構造体を新たに定義。
@@ -86,5 +87,17 @@ impl Zero for Integer {
 impl Identity for Integer {
     fn identity() -> Self {
         Integer::new(1)
+    }
+}
+
+/// 逆元の実装
+impl Inverse for Integer {
+    /// 整数の逆元。1,-1のみ逆元を持つ。
+    fn inverse(self) -> Option<Integer> {
+        match self {
+            Integer { value: 1 } => Some(Integer { value: 1 }),
+            Integer { value: -1 } => Some(Integer { value: -1 }),
+            _ => None,
+        }
     }
 }

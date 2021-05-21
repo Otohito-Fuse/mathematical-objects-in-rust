@@ -1,5 +1,6 @@
 use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign};
 use crate::identities::{Zero,Identity};
+use crate::inverse::Inverse;
 use std::fmt;
 
 /// MODで割った余り。\mathbb{Z} / MOD \mathbb{Z}の元。
@@ -109,5 +110,17 @@ impl<const MOD: u64> Zero for ModInt<MOD> {
 impl<const MOD: u64> Identity for ModInt<MOD> {
     fn identity() -> Self {
         ModInt::new(1)
+    }
+}
+
+impl<const MOD: u64> Inverse for ModInt<MOD> {
+    fn inverse(self) -> Option<ModInt<MOD>> {
+        let n = self.to_int();
+        if num::Integer::gcd(&n,&MOD) != 1 {
+            None
+        } else {
+            let ret = self.modpow(MOD - 2);
+            Some(ret)
+        }
     }
 }
