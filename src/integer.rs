@@ -4,7 +4,7 @@ use std::fmt;
 use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 
 /// 加減乗除など以外にもトレイトを実装するため、```i64```型と実質的には同等な```Integer```構造体を新たに定義。
-#[derive(Debug, Clone, Copy, Eq, PartialEq)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
 pub struct Integer {
     value: i64,
 }
