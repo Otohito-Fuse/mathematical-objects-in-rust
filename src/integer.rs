@@ -21,7 +21,11 @@ impl Integer {
 
 impl fmt::Display for Integer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", self.value)
+        if self.value >= 0 {
+            write!(f, "{}", self.value)
+        } else {
+            write!(f, "({})", self.value)
+        }
     }
 }
 
