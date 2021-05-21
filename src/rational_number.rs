@@ -9,7 +9,7 @@ use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 /// ただし、0は0/1とする。また、分母が0になったものは便宜上1/0とする。
 ///
 /// 分子は```i64```型、分母は```u64```型とする。
-#[derive(Debug, Clone, Copy, Eq, PartialEq)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
 pub struct RationalNumber {
     numerator: i64,
     denominator: u64,
