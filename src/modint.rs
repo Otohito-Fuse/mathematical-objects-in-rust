@@ -46,7 +46,7 @@ impl<const MOD: u64> ModInt<MOD> {
 /// ```println!```などで見やすく表示させるため、```Display```トレイトを実装。
 impl<const MOD: u64> fmt::Display for ModInt<MOD> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{} mod {}", self.representative, MOD)
+        write!(f, "[{}]", self.representative)
     }
 }
 
