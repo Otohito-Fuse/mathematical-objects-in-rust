@@ -1,3 +1,4 @@
+pub mod f_p;
 pub mod identities;
 pub mod integer;
 pub mod inverse;
@@ -8,12 +9,13 @@ pub mod quadratic_integer;
 
 #[cfg(test)]
 mod tests {
+    use crate::f_p::is_prime;
     use crate::identities::{Identity, Zero};
     use crate::integer::Integer;
     use crate::inverse::Inverse;
     use crate::modint::ModInt;
-    use crate::quadratic_integer::QuadInt;
     use crate::quadratic_extension::QuadExt;
+    use crate::quadratic_integer::QuadInt;
 
     const MOD1: u64 = 1_000_000_007;
     const MOD2: u64 = 998_244_353;
@@ -86,14 +88,30 @@ mod tests {
         let minus_one = ModInt::<11>::new(10);
         let zero = ModInt::<11>::zero();
         // 1 + i in F_11(sqrt(-1))
-        let x = QuadExt::<ModInt<11>>::new(ModInt::<11>::new(1),ModInt::<11>::new(1),zero,minus_one);
+        let x =
+            QuadExt::<ModInt<11>>::new(ModInt::<11>::new(1), ModInt::<11>::new(1), zero, minus_one);
         // 3 + 6i in F_11(sqrt(-1))
-        let y = QuadExt::<ModInt<11>>::new(ModInt::<11>::new(3),ModInt::<11>::new(6),zero,minus_one);
+        let y =
+            QuadExt::<ModInt<11>>::new(ModInt::<11>::new(3), ModInt::<11>::new(6), zero, minus_one);
         // 4 + 7i in F_11(sqrt(-1))
-        let z = QuadExt::<ModInt<11>>::new(ModInt::<11>::new(4),ModInt::<11>::new(7),zero,minus_one);
+        let z =
+            QuadExt::<ModInt<11>>::new(ModInt::<11>::new(4), ModInt::<11>::new(7), zero, minus_one);
         // 8 + 9i in F_11(sqrt(-1))
-        let w = QuadExt::<ModInt<11>>::new(ModInt::<11>::new(8),ModInt::<11>::new(9),zero,minus_one);
+        let w =
+            QuadExt::<ModInt<11>>::new(ModInt::<11>::new(8), ModInt::<11>::new(9), zero, minus_one);
         assert_eq!(x + y, z);
         assert_eq!(x * y, w);
+    }
+
+    /// is_prime関数の確認。
+    #[test]
+    fn is_prime_check1() {
+        assert!(is_prime(7).unwrap());
+        assert!(is_prime(101).unwrap());
+        assert!(!is_prime(456789).unwrap());
+        assert!(is_prime(998244353).unwrap());
+        assert!(is_prime(1000000007).unwrap());
+        assert!(!is_prime(10000000000000).unwrap());
+        assert_eq!(is_prime(100000000000001), None);
     }
 }
