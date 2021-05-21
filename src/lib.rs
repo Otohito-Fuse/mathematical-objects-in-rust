@@ -1,18 +1,20 @@
-pub mod matrix;
-pub mod modint;
 pub mod identities;
 pub mod integer;
-pub mod quadratic_integer;
 pub mod inverse;
+pub mod matrix;
+pub mod modint;
+pub mod quadratic_extension;
+pub mod quadratic_integer;
 
 #[cfg(test)]
 mod tests {
-    use crate::modint::ModInt;
+    use crate::identities::{Identity, Zero};
     use crate::integer::Integer;
-    use crate::identities::{Zero,Identity};
-    use crate::quadratic_integer::QuadInt;
     use crate::inverse::Inverse;
-    
+    use crate::modint::ModInt;
+    use crate::quadratic_integer::QuadInt;
+    use crate::quadratic_extension::QuadExt;
+
     const MOD1: u64 = 1_000_000_007;
     const MOD2: u64 = 998_244_353;
 
@@ -44,7 +46,7 @@ mod tests {
     /// ModInt型がDisplayトレイトを想定通りに実装できているかどうか
     #[test]
     fn modint_print1() {
-        assert_eq!("3 mod 1000000007", format!("{}",ModInt::<MOD1>::new(3)))
+        assert_eq!("3 mod 1000000007", format!("{}", ModInt::<MOD1>::new(3)))
     }
 
     /// ModInt型がInverseトレイトを想定通りに実装できているかどうか。
@@ -74,6 +76,24 @@ mod tests {
     /// QuadInt型がDisplayトレイトを想定通りに実装できているかどうか
     #[test]
     fn quadratic_integer_print1() {
-        assert_eq!("[1 + 1x]", format!("{}",QuadInt::<0, -1>::new(1, 1)))
+        assert_eq!("[1 + 1x]", format!("{}", QuadInt::<0, -1>::new(1, 1)))
+    }
+
+    /// QuadExt型の足し算と掛け算の確認。
+    /// F_11[X] / (X^2 + 1) で確かめる。
+    #[test]
+    fn quadratic_extension_treatment1() {
+        let minus_one = ModInt::<11>::new(10);
+        let zero = ModInt::<11>::zero();
+        // 1 + i in F_11(sqrt(-1))
+        let x = QuadExt::<ModInt<11>>::new(ModInt::<11>::new(1),ModInt::<11>::new(1),zero,minus_one);
+        // 3 + 6i in F_11(sqrt(-1))
+        let y = QuadExt::<ModInt<11>>::new(ModInt::<11>::new(3),ModInt::<11>::new(6),zero,minus_one);
+        // 4 + 7i in F_11(sqrt(-1))
+        let z = QuadExt::<ModInt<11>>::new(ModInt::<11>::new(4),ModInt::<11>::new(7),zero,minus_one);
+        // 8 + 9i in F_11(sqrt(-1))
+        let w = QuadExt::<ModInt<11>>::new(ModInt::<11>::new(8),ModInt::<11>::new(9),zero,minus_one);
+        assert_eq!(x + y, z);
+        assert_eq!(x * y, w);
     }
 }

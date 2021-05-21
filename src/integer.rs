@@ -1,7 +1,7 @@
-use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign};
-use crate::identities::{Zero,Identity};
+use crate::identities::{Identity, Zero};
 use crate::inverse::Inverse;
 use std::fmt;
+use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 
 /// 加減乗除など以外にもトレイトを実装するため、i64型と実質的には同等なInteger構造体を新たに定義。
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
@@ -11,9 +11,7 @@ pub struct Integer {
 
 impl Integer {
     pub fn new(n: i64) -> Self {
-        Integer {
-            value: n,
-        }
+        Integer { value: n }
     }
 
     pub fn to_int(&self) -> i64 {

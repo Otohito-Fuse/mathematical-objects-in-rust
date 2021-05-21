@@ -1,7 +1,7 @@
-use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign};
-use crate::identities::{Zero,Identity};
+use crate::identities::{Identity, Zero};
 use crate::inverse::Inverse;
 use std::fmt;
+use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 
 /// MODで割った余り。\mathbb{Z} / MOD \mathbb{Z}の元。
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
@@ -27,7 +27,7 @@ impl<const MOD: u64> ModInt<MOD> {
         let mut res = 1;
         let mut a = self.representative;
         let mut m = n;
-        loop{
+        loop {
             if m == 0 {
                 break;
             }
@@ -116,7 +116,7 @@ impl<const MOD: u64> Identity for ModInt<MOD> {
 impl<const MOD: u64> Inverse for ModInt<MOD> {
     fn inverse(self) -> Option<ModInt<MOD>> {
         let n = self.to_int();
-        if num::Integer::gcd(&n,&MOD) != 1 {
+        if num::Integer::gcd(&n, &MOD) != 1 {
             None
         } else {
             let ret = self.modpow(MOD - 2);

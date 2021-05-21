@@ -1,5 +1,5 @@
+use crate::identities::{Identity, Zero};
 use std::ops::{Add, AddAssign, Mul};
-use crate::identities::{Zero,Identity};
 
 /// （正方形とは限らない）行列
 #[derive(Clone)]

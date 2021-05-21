@@ -1,8 +1,9 @@
-use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign};
-use crate::identities::{Zero,Identity};
+use crate::identities::{Identity, Zero};
 use std::fmt;
+use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 
 /// Z[x]/(x^2 - Bx - C) の元
+///
 /// B = 0, C = -1 のときは Z[i] など
 #[derive(Debug, Clone, Copy, Eq, PartialEq)]
 pub struct QuadInt<const B: i64, const C: i64> {
@@ -70,7 +71,9 @@ impl<const B: i64, const C: i64> Mul for QuadInt<B, C> {
     fn mul(self, rhs: Self) -> Self {
         Self {
             constant: self.constant * rhs.constant + self.first * rhs.first * C,
-            first: self.first * rhs.constant + self.constant * rhs.first + self.first * rhs.first * B,
+            first: self.first * rhs.constant
+                + self.constant * rhs.first
+                + self.first * rhs.first * B,
         }
     }
 }
@@ -79,7 +82,9 @@ impl<const B: i64, const C: i64> MulAssign for QuadInt<B, C> {
     fn mul_assign(&mut self, other: Self) {
         *self = Self {
             constant: self.constant * other.constant + self.first * other.first * C,
-            first: self.first * other.constant + self.constant * other.first + self.first * other.first * B,
+            first: self.first * other.constant
+                + self.constant * other.first
+                + self.first * other.first * B,
         }
     }
 }
