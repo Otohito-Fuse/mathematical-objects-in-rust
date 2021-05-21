@@ -106,12 +106,15 @@ mod tests {
     /// is_prime関数の確認。
     #[test]
     fn is_prime_check1() {
-        assert!(is_prime(7).unwrap());
-        assert!(is_prime(101).unwrap());
-        assert!(!is_prime(456789).unwrap());
-        assert!(is_prime(998244353).unwrap());
-        assert!(is_prime(1000000007).unwrap());
-        assert!(!is_prime(10000000000000).unwrap());
-        assert_eq!(is_prime(100000000000001), None);
+        assert!(is_prime(7));
+        assert!(is_prime(101));
+        assert!(!is_prime(456789));
+        assert!(is_prime(998244353));
+        assert!(is_prime(1000000007));
+        assert!(!is_prime(10000000000000));
+        // 2^64 - 1
+        assert!(!is_prime(18446744073709551615));
+        // トーマスクラウセンが1855年に発見した素数
+        assert!(is_prime(67_280_421_310_721));
     }
 }
