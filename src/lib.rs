@@ -59,7 +59,7 @@ mod tests {
     /// ModInt型がDisplayトレイトを想定通りに実装できているかどうか
     #[test]
     fn modint_print1() {
-        assert_eq!("3 mod 1000000007", format!("{}", ModInt::<MOD1>::new(3)))
+        assert_eq!("[3]", format!("{}", ModInt::<MOD1>::new(3)))
     }
 
     /// ModInt型がInverseトレイトを想定通りに実装できているかどうか。
@@ -318,5 +318,18 @@ mod tests {
         let f1 = Polynomial::new(&v1);
         let f2 = Polynomial::new(&v2);
         assert_eq!(Polynomial::derivative(f1), f2);
+    }
+
+    /// 多項式への値の代入の確認
+    #[test]
+    fn evaluate_test1() {
+        let v: Vec<Integer> = vec![
+            Integer::new(2),
+            Integer::new(3),
+            Integer::new(1),
+        ];
+        let x: Integer = Integer::new(4);
+        let f = Polynomial::new(&v);
+        assert_eq!(Polynomial::evaluate(f, x), Integer::new(30));
     }
 }

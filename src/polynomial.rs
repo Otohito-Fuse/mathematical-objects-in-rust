@@ -85,6 +85,19 @@ impl<T: Zero + Identity + Mul<Output = T> + AddAssign + Copy + Eq> Polynomial<T>
     }
 }
 
+impl<T: Zero + Identity + Mul<Output = T> + MulAssign + AddAssign + Copy + Eq> Polynomial<T> {
+    /// 多項式に代入する。
+    pub fn evaluate(f: Self, t: T) -> T {
+        let mut t_pow = T::identity();
+        let mut ans = T::zero();
+        for &c in &f.coefficients {
+            ans += c * t_pow;
+            t_pow *= t;
+        }
+        ans
+    }
+}
+
 
 /// ```println!```などで見やすく表示させるため、```Display```トレイトを実装。
 impl<T: fmt::Display + Zero + Identity + Eq> fmt::Display for Polynomial<T> {
