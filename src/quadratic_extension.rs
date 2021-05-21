@@ -2,7 +2,7 @@ use crate::identities::Zero;
 use std::fmt;
 use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 
-/// R[x]/(x^2 - bx - b) の元。
+/// R[x]/(x^2 - bx - c) の元。
 /// ここでRは型Tの対象のなす環。
 /// 有限体の2次拡大などを意識している。
 ///
