@@ -13,6 +13,7 @@ pub mod real_number;
 pub mod solution_set;
 
 use crate::integer::Integer;
+use crate::polynomial::Polynomial;
 use crate::solution_set::SolutionSet;
 
 use std::collections::HashSet;
@@ -34,7 +35,38 @@ fn display_solution_set_test2() {
     println!("{}", s);
 }
 
+fn multiply_polynomials1() {
+    let v1: Vec<Integer> = vec![
+            Integer::new(2),
+            Integer::new(0),
+            Integer::new(3),
+            Integer::new(0),
+        ];
+        let v2: Vec<Integer> = vec![
+            Integer::new(3),
+            Integer::new(2),
+            Integer::new(-3),
+            Integer::new(5),
+        ];
+        let v3: Vec<Integer> = vec![
+            Integer::new(6),
+            Integer::new(4),
+            Integer::new(3),
+            Integer::new(16),
+            Integer::new(-9),
+            Integer::new(15),
+            Integer::new(0),
+        ];
+        let f1 = Polynomial::new(&v1);
+        let f2 = Polynomial::new(&v2);
+        let f3 = Polynomial::new(&v3);
+        assert_eq!(f1.clone() * f2.clone(), f3);
+        println!("({}) * ({}) = {}", f1, f2, f3);
+}
+
 fn main() {
     display_solution_set_test1();
     display_solution_set_test2();
+
+    multiply_polynomials1();
 }
