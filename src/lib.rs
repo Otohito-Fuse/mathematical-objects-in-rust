@@ -10,6 +10,7 @@ pub mod quadratic_field;
 pub mod quadratic_integer;
 pub mod rational_number;
 pub mod real_number;
+pub mod solution_set;
 
 #[cfg(test)]
 mod tests {
@@ -23,6 +24,9 @@ mod tests {
     use crate::quadratic_field::QuadField;
     use crate::quadratic_integer::QuadInt;
     use crate::rational_number::RationalNumber;
+    use crate::solution_set::SolutionSet;
+
+    use std::collections::HashSet;
 
     const MOD1: u64 = 1_000_000_007;
     const MOD2: u64 = 998_244_353;
@@ -266,5 +270,12 @@ mod tests {
         let f2 = Polynomial::new(&v2);
         let f3 = Polynomial::new(&v3);
         assert_eq!(f1 * f2, f3);
+    }
+
+    /// 解集合に実装したDisplayトレイトがちゃんと機能しているか確認
+    #[test]
+    fn display_solution_set_test1() {
+        let s = SolutionSet::new(HashSet::<Integer>::new());
+        assert_eq!("{ }",s.to_string());
     }
 }
