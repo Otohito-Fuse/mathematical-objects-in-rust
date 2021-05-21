@@ -227,21 +227,23 @@ impl<T: Copy + Add<Output = T> + AddAssign<T> + Mul<Output = T> + Zero + Eq> Mul
             for j in 0..=i {
                 if i - j <= rhs.degree && j <= self.degree {
                     v[i] += self.coefficients[j] * rhs.coefficients[i - j];
-                }   
+                }
             }
         }
         Polynomial::new(&v)
     }
 }
 
-impl<T: Copy + Add<Output = T> + AddAssign<T> + Mul<Output = T> + Zero + Eq> MulAssign for Polynomial<T> {
+impl<T: Copy + Add<Output = T> + AddAssign<T> + Mul<Output = T> + Zero + Eq> MulAssign
+    for Polynomial<T>
+{
     fn mul_assign(&mut self, rhs: Self) {
         let mut v: Vec<T> = vec![T::zero(); self.degree * rhs.degree + 1];
         for i in 0..=(self.degree * rhs.degree) {
             for j in 0..=i {
                 if i - j <= rhs.degree && j <= self.degree {
                     v[i] += self.coefficients[j] * rhs.coefficients[i - j];
-                }   
+                }
             }
         }
         *self = Polynomial::new(&v)
@@ -252,7 +254,7 @@ impl<T: Copy + Add<Output = T> + AddAssign<T> + Mul<Output = T> + Zero + Eq> Mul
 impl<T: Zero + Copy> Zero for Polynomial<T> {
     fn zero() -> Self {
         Self {
-            coefficients: vec![T::zero();1],
+            coefficients: vec![T::zero(); 1],
             degree: 0,
         }
     }
@@ -262,7 +264,7 @@ impl<T: Zero + Copy> Zero for Polynomial<T> {
 impl<T: Identity + Copy> Identity for Polynomial<T> {
     fn identity() -> Self {
         Self {
-            coefficients: vec![T::identity();1],
+            coefficients: vec![T::identity(); 1],
             degree: 0,
         }
     }
