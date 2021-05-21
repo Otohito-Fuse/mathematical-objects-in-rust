@@ -5,7 +5,7 @@ use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 /// Z\[x\]/(x^2 - Bx - C) の元
 ///
 /// B = 0, C = -1 のときは Z\[i\] など
-#[derive(Debug, Clone, Copy, Eq, PartialEq)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
 pub struct QuadInt<const B: i64, const C: i64> {
     constant: i64,
     first: i64,

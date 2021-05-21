@@ -8,7 +8,7 @@ use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 ///
 /// 本当は定数B,Cを```T```型として取りたかったが、
 /// ```<const B: T>```のような指定は許されていないようなので断念。
-#[derive(Debug, Clone, Copy, Eq, PartialEq)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
 pub struct QuadExt<T> {
     constant: T,
     first: T,

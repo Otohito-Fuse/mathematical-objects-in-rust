@@ -6,7 +6,7 @@ use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 /// Q\[x\]/(x^2 - Bx - C) の元（B, Cは整数ｓ）
 ///
 /// B = 0, C = 2 のときは Q\[sqrt(2)\] などs
-#[derive(Debug, Clone, Copy, Eq, PartialEq)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
 pub struct QuadField<const B: i64, const C: i64> {
     constant: RationalNumber,
     first: RationalNumber,
