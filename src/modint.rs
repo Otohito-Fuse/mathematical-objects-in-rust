@@ -4,7 +4,7 @@ use std::fmt;
 use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 
 /// ```MOD```で割った余り。Z / MOD Z の元。
-#[derive(Debug, Clone, Copy, Eq, PartialEq)]
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
 pub struct ModInt<const MOD: u64> {
     representative: u64,
 }
