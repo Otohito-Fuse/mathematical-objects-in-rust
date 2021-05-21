@@ -6,6 +6,7 @@ pub mod matrix;
 pub mod modint;
 pub mod quadratic_extension;
 pub mod quadratic_integer;
+pub mod real_number;
 
 #[cfg(test)]
 mod tests {
@@ -108,12 +109,14 @@ mod tests {
     fn is_prime_check1() {
         assert!(is_prime(7));
         assert!(is_prime(101));
-        assert!(!is_prime(456789));
-        assert!(is_prime(998244353));
-        assert!(is_prime(1000000007));
-        assert!(!is_prime(10000000000000));
+        assert!(!is_prime(456_789));
+        assert!(is_prime(998_244_353));
+        assert!(is_prime(1_000_000_007));
+        assert!(!is_prime(100_000_000_000_000_000));
         // 2^64 - 1
-        assert!(!is_prime(18446744073709551615));
+        assert!(!is_prime(18_446_744_073_709_551_615));
+        // レオンハルトオイラーが1772年に発見した素数
+        assert!(is_prime(2_147_483_647));
         // トーマスクラウセンが1855年に発見した素数
         assert!(is_prime(67_280_421_310_721));
     }
