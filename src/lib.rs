@@ -4,6 +4,7 @@ pub mod integer;
 pub mod inverse;
 pub mod matrix;
 pub mod modint;
+pub mod polynomial;
 pub mod quadratic_extension;
 pub mod quadratic_field;
 pub mod quadratic_integer;
@@ -17,6 +18,7 @@ mod tests {
     use crate::integer::Integer;
     use crate::inverse::Inverse;
     use crate::modint::ModInt;
+    use crate::polynomial::Polynomial;
     use crate::quadratic_extension::QuadExt;
     use crate::quadratic_field::QuadField;
     use crate::quadratic_integer::QuadInt;
@@ -167,5 +169,102 @@ mod tests {
         let b = QuadField::<0, 2>::new(RationalNumber::new(7, 10), RationalNumber::new(-17, 35));
         let c = QuadField::<0, 2>::new(RationalNumber::new(83, 3920), RationalNumber::new(-1, 280));
         assert_eq!(a * b, c);
+    }
+
+    /// 多項式表示テスト
+    #[test]
+    fn display_polynomial_test1() {
+        let v: Vec<Integer> = vec![
+            Integer::new(2),
+            Integer::new(3),
+            Integer::new(6),
+            Integer::new(0),
+            Integer::new(8),
+            Integer::new(0),
+        ];
+        let s: String = "2 + 3x + 6x^2 + 8x^4".to_string();
+        let f = Polynomial::new(&v);
+        assert_eq!(format!("{}", f), s);
+    }
+
+    /// 多項式表示テスト2
+    #[test]
+    fn display_polynomial_test2() {
+        let v: Vec<Integer> = vec![
+            Integer::new(0),
+            Integer::new(0),
+            Integer::new(3),
+            Integer::new(0),
+            Integer::new(1),
+            Integer::new(0),
+        ];
+        let s: String = "3x^2 + x^4".to_string();
+        let f = Polynomial::new(&v);
+        assert_eq!(format!("{}", f), s);
+    }
+
+    /// 多項式の和
+    #[test]
+    fn add_polynomials1() {
+        let v1: Vec<Integer> = vec![
+            Integer::new(0),
+            Integer::new(0),
+            Integer::new(3),
+            Integer::new(0),
+            Integer::new(1),
+            Integer::new(0),
+        ];
+        let v2: Vec<Integer> = vec![
+            Integer::new(3),
+            Integer::new(2),
+            Integer::new(-3),
+            Integer::new(5),
+            Integer::new(1),
+            Integer::new(1),
+            Integer::new(-20),
+        ];
+        let v3: Vec<Integer> = vec![
+            Integer::new(3),
+            Integer::new(2),
+            Integer::new(0),
+            Integer::new(5),
+            Integer::new(2),
+            Integer::new(1),
+            Integer::new(-20),
+        ];
+        let f1 = Polynomial::new(&v1);
+        let f2 = Polynomial::new(&v2);
+        let f3 = Polynomial::new(&v3);
+        assert_eq!(f1 + f2, f3);
+    }
+
+    /// 多項式の積
+    #[test]
+    fn multiply_polynomials1() {
+        let v1: Vec<Integer> = vec![
+            Integer::new(2),
+            Integer::new(0),
+            Integer::new(3),
+            Integer::new(0),
+        ];
+        let v2: Vec<Integer> = vec![
+            Integer::new(3),
+            Integer::new(2),
+            Integer::new(-3),
+            Integer::new(5),
+        ];
+        let v3: Vec<Integer> = vec![
+            Integer::new(6),
+            Integer::new(4),
+            Integer::new(3),
+            Integer::new(16),
+            Integer::new(-9),
+            Integer::new(15),
+            Integer::new(0),
+        ];
+        let f1 = Polynomial::new(&v1);
+        let f2 = Polynomial::new(&v2);
+        let f3 = Polynomial::new(&v3);
+        assert_eq!(f1 * f2, f3);
     }
 }
