@@ -6,7 +6,7 @@ use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 ///
 /// coefficientsは係数を並べた配列。i番目がi次の項に対応。
 /// 最高次係数がnon-zeroになるようにする（0だけは別）
-#[derive(Clone, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Eq, PartialEq, Hash)]
 pub struct Polynomial<T> {
     coefficients: Vec<T>,
     degree: usize,
