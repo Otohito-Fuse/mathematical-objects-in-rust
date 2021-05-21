@@ -39,8 +39,8 @@ impl<T: Zero + Eq> Polynomial<T> {
 }
 
 impl<T: Zero + Eq + Copy> Polynomial<T> {
-    /// T型のデータからなるベクトルを受け取り、それを係数としてもつ多項式を作る。
-    /// 最高次係数がnon-zeroになるようにするのでTにはZeroやEqを要求。
+    /// ```T```型のデータからなるベクトルを受け取り、それを係数としてもつ多項式を作る。
+    /// 最高次係数がnon-zeroになるようにするのでTには```Zero```や```Eq```を要求。
     pub fn new(v: &Vec<T>) -> Self {
         let mut f: Vec<T> = Vec::new();
         if v.len() == 0 {

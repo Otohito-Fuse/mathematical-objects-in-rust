@@ -16,6 +16,7 @@ impl<T: Hash> SolutionSet<T> {
 }
 
 impl<T: Hash + Eq> SolutionSet<T> {
+    /// 元を加える。
     pub fn insert(&mut self, t: T) {
         self.solutions.insert(t);
     }
