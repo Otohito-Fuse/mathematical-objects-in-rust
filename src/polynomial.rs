@@ -74,8 +74,8 @@ impl<T: Zero + Eq + Copy> Polynomial<T> {
 
 impl<T: Zero + Identity + Mul<Output = T> + AddAssign + Copy + Eq> Polynomial<T> {
     /// 微分（derivative）を求める関数。
-    pub fn derivative(f: Self) -> Self {
-        let mut integer = T::identity();    // 1,2,3,...に相当する元を作るために用意
+    pub fn derivative(f: &Self) -> Self {
+        let mut integer = T::identity(); // 1,2,3,...に相当する元を作るために用意
         let mut v = Vec::<T>::new();
         for &c in &f.coefficients[1..] {
             v.push(c * integer);
@@ -97,7 +97,6 @@ impl<T: Zero + Identity + Mul<Output = T> + MulAssign + AddAssign + Copy + Eq> P
         ans
     }
 }
-
 
 /// ```println!```などで見やすく表示させるため、```Display```トレイトを実装。
 impl<T: fmt::Display + Zero + Identity + Eq> fmt::Display for Polynomial<T> {

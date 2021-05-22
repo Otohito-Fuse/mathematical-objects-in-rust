@@ -1,6 +1,6 @@
 use super::identities::Zero;
-use super::polynomial::Polynomial;
 use super::modint::ModInt;
+use super::polynomial::Polynomial;
 use super::solution_set::SolutionSet;
 
 use std::collections::HashSet;
@@ -29,7 +29,7 @@ pub fn is_prime(n: u64) -> bool {
     true
 }
 
-pub const MOD: u64 = 103;   // テキトー
+pub const MOD: u64 = 103; // テキトー
 
 /// 方程式の解を全探索
 pub fn solve_equation(f: Polynomial<ModInt<MOD>>) -> SolutionSet<ModInt<MOD>> {

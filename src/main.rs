@@ -17,7 +17,7 @@ use crate::modint::ModInt;
 use crate::polynomial::Polynomial;
 use crate::solution_set::SolutionSet;
 
-use crate::f_p::{MOD,solve_equation};
+use crate::f_p::{solve_equation, MOD};
 
 use std::collections::HashSet;
 
@@ -96,9 +96,7 @@ fn derivative_of_polynomial2() {
         ModInt::<7>::new(0),
         ModInt::<7>::new(1),
     ];
-    let v2: Vec<ModInt<7>> = vec![
-        ModInt::<7>::new(0),
-    ];
+    let v2: Vec<ModInt<7>> = vec![ModInt::<7>::new(0)];
     let f1 = Polynomial::new(&v1);
     let f2 = Polynomial::new(&v2);
     println!("({})\' = {} in F_p[x]", f1, f2);
@@ -122,5 +120,8 @@ fn main() {
     ];
     let f1 = Polynomial::new(&v);
     let s = solve_equation(f1.clone());
-    println!("The solution set of the equation {} = 0 in F_{} is {}", f1, MOD, s);
+    println!(
+        "The solution set of the equation {} = 0 in F_{} is {}",
+        f1, MOD, s
+    );
 }

@@ -276,7 +276,7 @@ mod tests {
     #[test]
     fn display_solution_set_test1() {
         let s = SolutionSet::new(HashSet::<Integer>::new());
-        assert_eq!("{ }",s.to_string());
+        assert_eq!("{ }", s.to_string());
     }
 
     /// 多項式の微分のテスト1（整数係数多項式）
@@ -296,7 +296,7 @@ mod tests {
         ];
         let f1 = Polynomial::new(&v1);
         let f2 = Polynomial::new(&v2);
-        assert_eq!(Polynomial::derivative(f1), f2);
+        assert_eq!(Polynomial::derivative(&f1), f2);
     }
 
     /// 多項式の微分のテスト2（有限体上の多項式）
@@ -312,22 +312,16 @@ mod tests {
             ModInt::<7>::new(0),
             ModInt::<7>::new(1),
         ];
-        let v2: Vec<ModInt<7>> = vec![
-            ModInt::<7>::new(0),
-        ];
+        let v2: Vec<ModInt<7>> = vec![ModInt::<7>::new(0)];
         let f1 = Polynomial::new(&v1);
         let f2 = Polynomial::new(&v2);
-        assert_eq!(Polynomial::derivative(f1), f2);
+        assert_eq!(Polynomial::derivative(&f1), f2);
     }
 
     /// 多項式への値の代入の確認
     #[test]
     fn evaluate_test1() {
-        let v: Vec<Integer> = vec![
-            Integer::new(2),
-            Integer::new(3),
-            Integer::new(1),
-        ];
+        let v: Vec<Integer> = vec![Integer::new(2), Integer::new(3), Integer::new(1)];
         let x: Integer = Integer::new(4);
         let f = Polynomial::new(&v);
         assert_eq!(Polynomial::evaluate(&f, x), Integer::new(30));
