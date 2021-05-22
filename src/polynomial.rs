@@ -1,6 +1,6 @@
 use crate::identities::{Identity, Zero};
 use std::fmt;
-use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign, Neg};
+use std::ops::{Add, AddAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
 /// （1変数の）多項式
 ///
@@ -284,6 +284,7 @@ impl<T: Copy + Add<Output = T> + AddAssign<T> + Mul<Output = T> + Zero + Eq> Mul
     }
 }
 
+/// unary negation の実装
 impl<T: Zero + Eq + Copy + Neg<Output = T>> Neg for Polynomial<T> {
     type Output = Self;
     fn neg(self) -> Self {

@@ -1,7 +1,7 @@
 use crate::identities::{Identity, Zero};
 use crate::inverse::Inverse;
 use std::fmt;
-use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign, Neg};
+use std::ops::{Add, AddAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
 /// 加減乗除など以外にもトレイトを実装するため、```i64```型と実質的には同等な```Integer```構造体を新たに定義。
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]

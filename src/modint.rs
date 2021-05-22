@@ -1,7 +1,7 @@
 use crate::identities::{Identity, Zero};
 use crate::inverse::Inverse;
 use std::fmt;
-use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign, Neg};
+use std::ops::{Add, AddAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
 /// ```MOD```で割った余り。Z / MOD Z の元。
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
