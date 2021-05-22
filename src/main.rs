@@ -121,6 +121,6 @@ fn main() {
         ModInt::<MOD>::new(1),
     ];
     let f1 = Polynomial::new(&v);
-    let s = solve_equation(f1);
-    println!("The solution set of the equation x^3 + 3x^2 + 95x + 4 = 0 in F_103 is {}", s);
+    let s = solve_equation(f1.clone());
+    println!("The solution set of the equation {} = 0 in F_{} is {}", f1, MOD, s);
 }
