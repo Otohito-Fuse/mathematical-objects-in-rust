@@ -1,7 +1,7 @@
 use crate::identities::{Identity, Zero};
 use crate::inverse::Inverse;
 use std::fmt;
-use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
+use std::ops::{Add, AddAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
 /// 有理数（分数）を表現するための```RationalNumber```構造体の定義。
 ///
@@ -102,6 +102,13 @@ impl MulAssign for RationalNumber {
             self.numerator * other.numerator,
             self.denominator * other.denominator,
         );
+    }
+}
+
+impl Neg for RationalNumber {
+    type Output = Self;
+    fn neg(self) -> Self {
+        RationalNumber::new(-self.numerator, self.denominator)
     }
 }
 
