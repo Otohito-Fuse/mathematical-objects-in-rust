@@ -43,7 +43,10 @@ quadratic integer と同じことを任意の環についてやる。
 
 ### F_p
 有限体 F_p (pは素数) 周りの概念。
-今は関数```is_prime: f64 -> bool```のみ定義。
+
+素数判定の関数```is_prime: f64 -> bool```を定義。
+
+F_pでの方程式の解を求める関数（返り値は```SolutionSet<ModInt<MOD>>```型）を定義。MODはその都度書き換える。
 
 ### real number
 ```Zero```, ```Identity``` などの自作トレイトを実装するために ```f64``` 型のフィールドを1つだけ持つ構造体を別に定義。

@@ -330,6 +330,6 @@ mod tests {
         ];
         let x: Integer = Integer::new(4);
         let f = Polynomial::new(&v);
-        assert_eq!(Polynomial::evaluate(f, x), Integer::new(30));
+        assert_eq!(Polynomial::evaluate(&f, x), Integer::new(30));
     }
 }

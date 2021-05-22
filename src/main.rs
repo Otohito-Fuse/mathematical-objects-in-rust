@@ -17,6 +17,8 @@ use crate::modint::ModInt;
 use crate::polynomial::Polynomial;
 use crate::solution_set::SolutionSet;
 
+use crate::f_p::{MOD,solve_equation};
+
 use std::collections::HashSet;
 
 /// 解集合に実装したDisplayトレイトの振る舞いを確認するその1
@@ -110,4 +112,15 @@ fn main() {
 
     derivative_of_polynomial1();
     derivative_of_polynomial2();
+
+    // F_103での方程式 x^3+3x^2+95x+4 = 0 の解を全探索
+    let v: Vec<ModInt<MOD>> = vec![
+        ModInt::<MOD>::new(4),
+        ModInt::<MOD>::new(95),
+        ModInt::<MOD>::new(3),
+        ModInt::<MOD>::new(1),
+    ];
+    let f1 = Polynomial::new(&v);
+    let s = solve_equation(f1);
+    println!("The solution set of the equation x^3 + 3x^2 + 95x + 4 = 0 in F_103 is {}", s);
 }

@@ -1,4 +1,11 @@
-// 有限体 F_p (pは素数) まわりの関数の定義
+use super::identities::Zero;
+use super::polynomial::Polynomial;
+use super::modint::ModInt;
+use super::solution_set::SolutionSet;
+
+use std::collections::HashSet;
+
+// 有限体 F_p (pは素数) まわりのもろもろ
 
 /// 素数判定
 pub fn is_prime(n: u64) -> bool {
@@ -20,4 +27,17 @@ pub fn is_prime(n: u64) -> bool {
         }
     }
     true
+}
+
+pub const MOD: u64 = 103;   // テキトー
+
+/// 方程式の解を全探索
+pub fn solve_equation(f: Polynomial<ModInt<MOD>>) -> SolutionSet<ModInt<MOD>> {
+    let mut s: HashSet<ModInt<MOD>> = HashSet::new();
+    for i in 0..MOD {
+        if Polynomial::evaluate(&f, ModInt::<MOD>::new(i)) == ModInt::<MOD>::zero() {
+            s.insert(ModInt::<MOD>::new(i));
+        }
+    }
+    SolutionSet::new(s)
 }

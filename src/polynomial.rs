@@ -87,7 +87,7 @@ impl<T: Zero + Identity + Mul<Output = T> + AddAssign + Copy + Eq> Polynomial<T>
 
 impl<T: Zero + Identity + Mul<Output = T> + MulAssign + AddAssign + Copy + Eq> Polynomial<T> {
     /// 多項式に代入する。
-    pub fn evaluate(f: Self, t: T) -> T {
+    pub fn evaluate(f: &Self, t: T) -> T {
         let mut t_pow = T::identity();
         let mut ans = T::zero();
         for &c in &f.coefficients {
