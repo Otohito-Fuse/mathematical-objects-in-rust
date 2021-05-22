@@ -19,7 +19,7 @@ pub fn is_prime(n: u64) -> bool {
         return false;
     }
     for i in 0..n {
-        if n % (3 + 2 * i) == 0 {
+        if n != 3 + 2 * i && n % (3 + 2 * i) == 0 {
             return false;
         }
         if (3 + 2 * i) * (3 + 2 * i) >= n {
