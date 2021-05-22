@@ -1,6 +1,6 @@
 use crate::identities::{Identity, Zero};
 use std::fmt;
-use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
+use std::ops::{Add, AddAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
 /// Z\[x\]/(x^2 - Bx - C) の元
 ///
@@ -103,6 +103,16 @@ impl<const B: i64, const C: i64> Identity for QuadInt<B, C> {
         Self {
             constant: 1,
             first: 0,
+        }
+    }
+}
+
+impl<const B: i64, const C: i64> Neg for QuadInt<B, C> {
+    type Output = Self;
+    fn neg(self) -> Self {
+        Self {
+            constant: -self.constant,
+            first: -self.first,
         }
     }
 }

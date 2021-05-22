@@ -1,7 +1,7 @@
 use crate::identities::{Identity, Zero};
 use crate::rational_number::RationalNumber;
 use std::fmt;
-use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
+use std::ops::{Add, AddAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
 /// Q\[x\]/(x^2 - Bx - C) の元（B, Cは整数ｓ）
 ///
@@ -106,6 +106,16 @@ impl<const B: i64, const C: i64> Identity for QuadField<B, C> {
         Self {
             constant: RationalNumber::identity(),
             first: RationalNumber::zero(),
+        }
+    }
+}
+
+impl<const B: i64, const C: i64> Neg for QuadField<B, C> {
+    type Output = Self;
+    fn neg(self) -> Self {
+        Self {
+            constant: -self.constant,
+            first: -self.first,
         }
     }
 }

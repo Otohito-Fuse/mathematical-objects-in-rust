@@ -1,6 +1,6 @@
 use crate::identities::Zero;
 use std::fmt;
-use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
+use std::ops::{Add, AddAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
 /// R\[x\]/(x^2 - bx - c) の元。
 /// ここでRは型```T```の対象のなす環。
@@ -162,6 +162,18 @@ impl<T: Copy + Add<Output = T> + Mul<Output = T> + Zero + Eq> MulAssign for Quad
                 b: self.b,
                 c: self.c,
             }
+        }
+    }
+}
+
+impl<T: Neg<Output = T>> Neg for QuadExt<T> {
+    type Output = Self;
+    fn neg(self) -> Self {
+        Self {
+            constant: -self.constant,
+            first: -self.first,
+            b: self.b,
+            c: self.c,
         }
     }
 }
