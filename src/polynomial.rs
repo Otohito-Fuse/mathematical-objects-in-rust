@@ -1,6 +1,6 @@
 use crate::identities::{Identity, Zero};
 use std::fmt;
-use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
+use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign, Neg};
 
 /// （1変数の）多項式
 ///
@@ -281,6 +281,17 @@ impl<T: Copy + Add<Output = T> + AddAssign<T> + Mul<Output = T> + Zero + Eq> Mul
             }
         }
         *self = Polynomial::new(&v)
+    }
+}
+
+impl<T: Zero + Eq + Copy + Neg<Output = T>> Neg for Polynomial<T> {
+    type Output = Self;
+    fn neg(self) -> Self {
+        let mut v: Vec<T> = Vec::new();
+        for c in self.coefficients.clone() {
+            v.push(-c);
+        }
+        Polynomial::new(&v)
     }
 }
 
