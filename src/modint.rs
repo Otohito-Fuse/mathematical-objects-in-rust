@@ -1,7 +1,7 @@
 use crate::identities::{Identity, Zero};
 use crate::inverse::Inverse;
 use std::fmt;
-use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
+use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign, Neg};
 
 /// ```MOD```で割った余り。Z / MOD Z の元。
 #[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
@@ -98,6 +98,14 @@ impl<const MOD: u64> MulAssign for ModInt<MOD> {
         *self = Self {
             representative: (self.representative * other.representative) % MOD,
         };
+    }
+}
+
+/// unary negation の実装
+impl<const MOD: u64> Neg for ModInt<MOD> {
+    type Output = Self;
+    fn neg(self) -> Self {
+        ModInt::<MOD>::new(MOD - self.representative)
     }
 }
 
