@@ -1,3 +1,4 @@
+pub mod complexification;
 pub mod f_p;
 pub mod identities;
 pub mod integer;
@@ -14,6 +15,7 @@ pub mod solution_set;
 
 #[cfg(test)]
 mod tests {
+    use crate::complexification::Complex;
     use crate::f_p::is_prime;
     use crate::identities::{Identity, Zero};
     use crate::integer::Integer;
@@ -325,5 +327,17 @@ mod tests {
         let x: Integer = Integer::new(4);
         let f = Polynomial::new(&v);
         assert_eq!(Polynomial::evaluate(&f, x), Integer::new(30));
+    }
+
+    /// 複素数の掛け算の確認
+    #[test]
+    fn multiply_complex_numbers1() {
+        let x =
+            Complex::<RationalNumber>::new(RationalNumber::new(3, 1), RationalNumber::new(1, 2));
+        let y =
+            Complex::<RationalNumber>::new(RationalNumber::new(-1, 3), RationalNumber::new(2, 1));
+        let z =
+            Complex::<RationalNumber>::new(RationalNumber::new(-2, 1), RationalNumber::new(35, 6));
+        assert_eq!(x * y, z);
     }
 }
