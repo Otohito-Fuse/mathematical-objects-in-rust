@@ -1,3 +1,4 @@
+use crate::characteristic::Characteristic;
 use crate::identities::{Identity, Zero};
 use std::fmt;
 use std::ops::{Add, AddAssign, Mul, MulAssign, Neg, Sub, SubAssign};
@@ -313,5 +314,11 @@ impl<T: Identity + Copy> Identity for Polynomial<T> {
             coefficients: vec![T::identity(); 1],
             degree: 0,
         }
+    }
+}
+
+impl<T: Characteristic> Characteristic for Polynomial<T> {
+    fn characteristic() -> u64 {
+        T::characteristic()
     }
 }

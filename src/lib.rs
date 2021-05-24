@@ -1,3 +1,4 @@
+pub mod characteristic;
 pub mod complexification;
 pub mod f_p;
 pub mod identities;

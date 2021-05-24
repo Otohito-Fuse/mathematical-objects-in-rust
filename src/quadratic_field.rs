@@ -1,3 +1,4 @@
+use crate::characteristic::Characteristic;
 use crate::identities::{Identity, Zero};
 use crate::rational_number::RationalNumber;
 use std::fmt;
@@ -117,5 +118,11 @@ impl<const B: i64, const C: i64> Neg for QuadField<B, C> {
             constant: -self.constant,
             first: -self.first,
         }
+    }
+}
+
+impl<const B: i64, const C: i64> Characteristic for QuadField<B, C> {
+    fn characteristic() -> u64 {
+        0
     }
 }

@@ -1,3 +1,4 @@
+use crate::characteristic::Characteristic;
 use crate::identities::{Identity, Zero};
 use std::fmt;
 use std::ops::{Add, AddAssign, Mul, MulAssign, Neg, Sub, SubAssign};
@@ -113,5 +114,11 @@ impl<T: Copy + Zero + Identity> Identity for Complex<T> {
             real: T::identity(),
             imaginary: T::zero(),
         }
+    }
+}
+
+impl<T: Characteristic> Characteristic for Complex<T> {
+    fn characteristic() -> u64 {
+        T::characteristic()
     }
 }

@@ -90,3 +90,8 @@ quadratic extension の R\[x\]/(x^2 - bx - c) の b, c をそれぞれ 0, -1 に
 ```Integer```や```RationalNumber```について作れば Z\[i\] や Q(i) になるし、
 x^2 + 1 in F_p\[x\] が規約多項式になるような素数 p （4で割って3余る素数）を選んで```ModInt<p>```について作れば
 F_(p^2) になる。
+
+標数はRの標数を引き継ぐ。
+
+### characteristic
+標数。Z/nZ (nは素数ではない) のときは便宜的に標数nとする。

@@ -1,3 +1,4 @@
+use crate::characteristic::Characteristic;
 use crate::identities::{Identity, Zero};
 use std::fmt;
 use std::ops::{Add, AddAssign, Mul, MulAssign, Neg, Sub, SubAssign};
@@ -91,5 +92,11 @@ impl Zero for RealNumber {
 impl Identity for RealNumber {
     fn identity() -> Self {
         RealNumber::new(1f64)
+    }
+}
+
+impl Characteristic for RealNumber {
+    fn characteristic() -> u64 {
+        0
     }
 }

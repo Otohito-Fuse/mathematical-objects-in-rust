@@ -1,3 +1,4 @@
+use crate::characteristic::Characteristic;
 use crate::identities::Zero;
 use std::fmt;
 use std::ops::{Add, AddAssign, Mul, MulAssign, Neg, Sub, SubAssign};
@@ -175,5 +176,11 @@ impl<T: Neg<Output = T>> Neg for QuadExt<T> {
             b: self.b,
             c: self.c,
         }
+    }
+}
+
+impl<T: Characteristic> Characteristic for QuadExt<T> {
+    fn characteristic() -> u64 {
+        T::characteristic()
     }
 }

@@ -1,3 +1,4 @@
+use crate::characteristic::Characteristic;
 use crate::identities::{Identity, Zero};
 use crate::inverse::Inverse;
 use std::fmt;
@@ -130,5 +131,11 @@ impl<const MOD: u64> Inverse for ModInt<MOD> {
             let ret = self.modpow(MOD - 2);
             Some(ret)
         }
+    }
+}
+
+impl<const MOD: u64> Characteristic for ModInt<MOD> {
+    fn characteristic() -> u64 {
+        MOD
     }
 }

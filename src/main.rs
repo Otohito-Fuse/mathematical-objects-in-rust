@@ -1,3 +1,4 @@
+pub mod characteristic;
 pub mod f_p;
 pub mod identities;
 pub mod integer;

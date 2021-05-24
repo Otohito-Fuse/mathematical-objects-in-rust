@@ -1,3 +1,4 @@
+use crate::characteristic::Characteristic;
 use crate::identities::{Identity, Zero};
 use crate::inverse::Inverse;
 use std::fmt;
@@ -141,5 +142,11 @@ impl Inverse for RationalNumber {
                 (-self.numerator) as u64,
             ))
         }
+    }
+}
+
+impl Characteristic for RationalNumber {
+    fn characteristic() -> u64 {
+        0
     }
 }
