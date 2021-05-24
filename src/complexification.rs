@@ -24,7 +24,7 @@ impl<T> Complex<T> {
 /// 型```T```がそもそも```Display```トレイトを実装していることを要求。
 impl<T: fmt::Display> fmt::Display for Complex<T> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "[({}) + ({})i]", self.real, self.imaginary)
+        write!(f, "{} + {}i", self.real, self.imaginary)
     }
 }
 
